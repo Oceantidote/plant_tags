@@ -11,9 +11,17 @@
         <% @garden.plants.each do |plant| %>
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= plant.image_url %>)">
             <%= plant.name %>
+            <%= link_to new_plant_plant_tag_path(plant), class: 'card-tag-link' do  %>
+               <i class="fas fa-plus"></i>
+            <% end %>
             <%= link_to plant_path(plant), method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-remove-link' do %>
               <i class="fas fa-trash"></i>
             <% end %>
+            <div class="card-tags">
+              <% plant.tags.each do |tag| %>
+                <span><%= tag.name %></span>
+              <% end %>
+            </div>
           </div>
 
         <% end %>
